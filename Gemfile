@@ -34,8 +34,9 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem "slim-rails"
-
 gem 'omniauth-google-oauth2'
+gem "bulma-rails", "~> 0.7.4"
+gem 'simple_form'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
