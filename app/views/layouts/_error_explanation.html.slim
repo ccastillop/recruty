@@ -1,0 +1,10 @@
+- obj = f.object
+- if obj.errors.any?
+  article.message.is-danger
+    .message-header
+      p Por favor revisar:
+    .message-body
+      p = "#{pluralize(obj.errors.count, "error")}"
+      ul
+        - obj.errors.full_messages.each do |message|
+          li = message

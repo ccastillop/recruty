@@ -1,6 +1,8 @@
-h1 Listing questionnaires
+h1.title Cuestionarios (#{Questionnaire.count})
 
-table
+= link_to 'New Questionnaire', new_questionnaire_path
+
+table.table.is-bordered.is-striped.is-narrow.is-hoverable
   thead
     tr
       th Name
@@ -18,6 +20,5 @@ table
         td = link_to 'Edit', edit_questionnaire_path(questionnaire)
         td = link_to 'Destroy', questionnaire, data: { confirm: 'Are you sure?' }, method: :delete
 
-br
 
-= link_to 'New Questionnaire', new_questionnaire_path
+

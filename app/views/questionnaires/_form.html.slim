@@ -1,15 +1,10 @@
 = form_for @questionnaire do |f|
-  - if @questionnaire.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@questionnaire.errors.count, "error")} prohibited this questionnaire from being saved:"
-      ul
-        - @questionnaire.errors.full_messages.each do |message|
-          li = message
+  = render 'layouts/error_explanation', f: f
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :instructions
-    = f.text_area :instructions
-  .actions = f.submit
+  = form_group_for f, :name, label: :name do
+    = f.text_field :name, class: "input"
+
+  = form_group_for f, :instructions, label: :instructions do
+    = f.text_area :instructions, class: "textarea"
+
+  .field = f.submit class:"button is-link"
