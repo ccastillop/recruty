@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Questionnarie:
+  = @question.questionnarie
+p
+  strong Kind:
+  = @question.kind
+p
+  strong Name:
+  = @question.name
+p
+  strong Body:
+  = @question.body
+
+=> link_to 'Edit', edit_question_path(@question)
+'|
+=< link_to 'Back', questions_path

@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @questionnaire.name
+p
+  strong Instructions:
+  = @questionnaire.instructions
+
+=> link_to 'Edit', edit_questionnaire_path(@questionnaire)
+'|
+=< link_to 'Back', questionnaires_path

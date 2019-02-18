@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong User:
+  = @answer.user
+p
+  strong Questionnarie:
+  = @answer.questionnarie
+p
+  strong Question:
+  = @answer.question
+p
+  strong Choice:
+  = @answer.choice
+p
+  strong Body:
+  = @answer.body
+p
+  strong Score:
+  = @answer.score
+
+=> link_to 'Edit', edit_answer_path(@answer)
+'|
+=< link_to 'Back', answers_path

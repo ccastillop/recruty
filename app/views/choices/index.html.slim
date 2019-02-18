@@ -1,0 +1,25 @@
+h1 Listing choices
+
+table
+  thead
+    tr
+      th Question
+      th Body
+      th Score
+      th
+      th
+      th
+
+  tbody
+    - @choices.each do |choice|
+      tr
+        td = choice.question
+        td = choice.body
+        td = choice.score
+        td = link_to 'Show', choice
+        td = link_to 'Edit', edit_choice_path(choice)
+        td = link_to 'Destroy', choice, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Choice', new_choice_path

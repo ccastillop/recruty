@@ -1,0 +1,23 @@
+h1 Listing questionnaires
+
+table
+  thead
+    tr
+      th Name
+      th Instructions
+      th
+      th
+      th
+
+  tbody
+    - @questionnaires.each do |questionnaire|
+      tr
+        td = questionnaire.name
+        td = questionnaire.instructions
+        td = link_to 'Show', questionnaire
+        td = link_to 'Edit', edit_questionnaire_path(questionnaire)
+        td = link_to 'Destroy', questionnaire, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Questionnaire', new_questionnaire_path

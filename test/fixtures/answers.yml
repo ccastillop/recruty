@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  questionnarie: one
+  question: one
+  choice: one
+  body: MyText
+  score: 1
+
+two:
+  user: two
+  questionnarie: two
+  question: two
+  choice: two
+  body: MyText
+  score: 1
