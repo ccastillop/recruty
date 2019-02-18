@@ -2,11 +2,11 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?, :current_user
 
   def logged_in?
-    session.has_key? :user
+    session.has_key?(:user_id) && User.exists?(session[:user_id])
   end
 
   def current_user
-    Marshal.load session[:user] if logged_in?
+    User.find(session[:user_id]) if logged_in? 
   end
 
 end
