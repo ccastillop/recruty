@@ -1,33 +1,18 @@
-h1 Listing users
+h1.title Usuarios
 
-table
+table.table.is-bordered.is-striped.is-narrow.is-hoverable
   thead
     tr
-      th Uid
       th Email
       th Name
       th Image url
-      th First name
-      th Last name
-      th Level
-      th
-      th
       th
 
   tbody
     - @users.each do |user|
       tr
-        td = user.uid
         td = user.email
         td = user.name
-        td = user.image_url
-        td = user.first_name
-        td = user.last_name
-        td = user.level
+        td = image_tag user.image_url
         td = link_to 'Show', user
-        td = link_to 'Edit', edit_user_path(user)
-        td = link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete
 
-br
-
-= link_to 'New User', new_user_path

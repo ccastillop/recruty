@@ -1,2 +1,16 @@
-h1 Home#index
-p Find me in app/views/home/index.html.slim
+h1 Recluty
+p Buscamos personas interesadas
+p explicación
+p disclamer
+
+- if logged_in?
+  - if current_user.admin?
+    h2 Menú admin
+    ul
+      li= link_to "Usuarios (#{User.count})", users_path
+      li= link_to "Cuestionarios (#{Questionnaire.count})", questionnaires_path
+      li= "formularios respondidos..."
+
+  - if current_user.normal?
+    h2 Bienvenido #{current_user}
+    p Lista de cuestionarios para contestar...:

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :choices
   resources :questions
   resources :questionnaires
-  resources :users
+  resources :users, only: [:index, :show]
   get 'home/index'
   root 'home#index'
 

@@ -1,4 +1,4 @@
-p#notice = notice
+h1.title = @user.name
 
 p
   strong Uid:
@@ -7,11 +7,8 @@ p
   strong Email:
   = @user.email
 p
-  strong Name:
-  = @user.name
-p
   strong Image url:
-  = @user.image_url
+  = image_tag @user.image_url
 p
   strong First name:
   = @user.first_name
@@ -22,6 +19,3 @@ p
   strong Level:
   = @user.level
 
-=> link_to 'Edit', edit_user_path(@user)
-'|
-=< link_to 'Back', users_path
