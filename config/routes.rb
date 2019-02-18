@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :answers
+  resources :quizzes
+  resources :choices
+  resources :questions
+  resources :questionnaires
   resources :users
   get 'home/index'
   root 'home#index'
