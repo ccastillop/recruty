@@ -12,9 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2019_02_18_163335) do
 
-  create_table "answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "questionnarie_id"
+    t.bigint "questionnaire_id"
     t.bigint "question_id"
     t.bigint "choice_id"
     t.text "body"
@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(version: 2019_02_18_163335) do
     t.datetime "updated_at", null: false
     t.index ["choice_id"], name: "index_answers_on_choice_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
-    t.index ["questionnarie_id"], name: "index_answers_on_questionnarie_id"
+    t.index ["questionnaire_id"], name: "index_answers_on_questionnaire_id"
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
-  create_table "choices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "choices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "question_id"
     t.text "body"
     t.integer "score", default: 0
@@ -36,24 +36,24 @@ ActiveRecord::Schema.define(version: 2019_02_18_163335) do
     t.index ["question_id"], name: "index_choices_on_question_id"
   end
 
-  create_table "questionnaires", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "questionnaires", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.text "instructions"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "questions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
-    t.bigint "questionnarie_id"
+  create_table "questions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "questionaire_id"
     t.string "kind"
     t.string "name"
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["questionnarie_id"], name: "index_questions_on_questionnarie_id"
+    t.index ["questionaire_id"], name: "index_questions_on_questionaire_id"
   end
 
-  create_table "quizzes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "quizzes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.string "state"
     t.datetime "created_at", null: false
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2019_02_18_163335) do
     t.index ["user_id"], name: "index_quizzes_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "uid"
     t.string "email"
     t.string "name"

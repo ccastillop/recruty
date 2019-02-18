@@ -7,6 +7,7 @@ table.table.is-bordered.is-striped.is-narrow.is-hoverable
     tr
       th Name
       th Instructions
+      th Questions
       th
       th
       th
@@ -16,6 +17,7 @@ table.table.is-bordered.is-striped.is-narrow.is-hoverable
       tr
         td = questionnaire.name
         td = questionnaire.instructions
+        td = questionnaire.questions.count
         td = link_to 'Show', questionnaire
         td = link_to 'Edit', edit_questionnaire_path(questionnaire)
         td = link_to 'Destroy', questionnaire, data: { confirm: 'Are you sure?' }, method: :delete
