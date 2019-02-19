@@ -1,6 +1,6 @@
 p
   strong Questionnarie:
-  = @question.questionnarie
+  = @question.questionnaire
 p
   strong Kind:
   = @question.kind
@@ -13,4 +13,4 @@ p
 
 => link_to 'Edit', edit_question_path(@question)
 '|
-=< link_to 'Back', questionnaire_questions_path(@questionnarie)
+=< link_to 'Back', questionnaire_questions_path(@question.questionnaire)

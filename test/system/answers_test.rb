@@ -17,7 +17,7 @@ class AnswersTest < ApplicationSystemTestCase
     fill_in "Body", with: @answer.body
     fill_in "Choice", with: @answer.choice_id
     fill_in "Question", with: @answer.question_id
-    fill_in "Questionnarie", with: @answer.questionnarie_id
+    fill_in "Questionnarie", with: @answer.questionnaire_id
     fill_in "Score", with: @answer.score
     fill_in "User", with: @answer.user_id
     click_on "Create Answer"
@@ -33,7 +33,7 @@ class AnswersTest < ApplicationSystemTestCase
     fill_in "Body", with: @answer.body
     fill_in "Choice", with: @answer.choice_id
     fill_in "Question", with: @answer.question_id
-    fill_in "Questionnarie", with: @answer.questionnarie_id
+    fill_in "Questionnarie", with: @answer.questionnaire_id
     fill_in "Score", with: @answer.score
     fill_in "User", with: @answer.user_id
     click_on "Update Answer"

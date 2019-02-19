@@ -17,7 +17,7 @@ class QuestionsTest < ApplicationSystemTestCase
     fill_in "Body", with: @question.body
     fill_in "Kind", with: @question.kind
     fill_in "Name", with: @question.name
-    fill_in "Questionnarie", with: @question.questionnarie_id
+    fill_in "Questionnarie", with: @question.questionnaire_id
     click_on "Create Question"
 
     assert_text "Question was successfully created"
@@ -31,7 +31,7 @@ class QuestionsTest < ApplicationSystemTestCase
     fill_in "Body", with: @question.body
     fill_in "Kind", with: @question.kind
     fill_in "Name", with: @question.name
-    fill_in "Questionnarie", with: @question.questionnarie_id
+    fill_in "Questionnarie", with: @question.questionnaire_id
     click_on "Update Question"
 
     assert_text "Question was successfully updated"

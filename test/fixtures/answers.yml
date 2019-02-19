@@ -2,7 +2,7 @@
 
 one:
   user: one
-  questionnarie: one
+  questionnaire: one
   question: one
   choice: one
   body: MyText
@@ -10,7 +10,7 @@ one:
 
 two:
   user: two
-  questionnarie: two
+  questionnaire: two
   question: two
   choice: two
   body: MyText

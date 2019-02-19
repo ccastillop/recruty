@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  questionnarie: one
+  questionnaire: one
   kind: MyString
   name: MyString
   body: MyText
 
 two:
-  questionnarie: two
+  questionnaire: two
   kind: MyString
   name: MyString
   body: MyText
