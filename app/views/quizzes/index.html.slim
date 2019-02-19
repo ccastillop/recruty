@@ -1,9 +1,11 @@
-h1 Listing quizzes
+h1.title Lista de Evaluaciones
+p.subtitle= @questionnaire
 
-table
+table.table.is-striped.is-narrow.is-hoverable
   thead
     tr
       th User
+      th Cuestionario
       th State
       th
       th
@@ -13,11 +15,8 @@ table
     - @quizzes.each do |quiz|
       tr
         td = quiz.user
+        td = quiz.questionnaire
         td = quiz.state
         td = link_to 'Show', quiz
         td = link_to 'Edit', edit_quiz_path(quiz)
         td = link_to 'Destroy', quiz, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Quiz', new_quiz_path

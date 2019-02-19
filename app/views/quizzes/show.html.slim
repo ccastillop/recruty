@@ -1,5 +1,6 @@
-p#notice = notice
-
+p
+  strong Cuestionario:
+  = @quiz.questionnaire
 p
   strong User:
   = @quiz.user
@@ -9,4 +10,4 @@ p
 
 => link_to 'Edit', edit_quiz_path(@quiz)
 '|
-=< link_to 'Back', quizzes_path
+=< link_to 'Back', questionnaire_quizzes_path(@quiz.questionnaire)

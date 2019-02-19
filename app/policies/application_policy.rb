@@ -33,8 +33,8 @@ class ApplicationPolicy
       if user.admin?
         scope
       else user.normal?
-        #scope.where(user_id: user.id)
         scope.none
+        #scope.where(user_id: user.id)
       end
     end
   end

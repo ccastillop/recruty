@@ -1,15 +1,44 @@
-= form_for @quiz do |f|
-  - if @quiz.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@quiz.errors.count, "error")} prohibited this quiz from being saved:"
-      ul
-        - @quiz.errors.full_messages.each do |message|
-          li = message
+.contents
+  = form_for [@questionnaire, @quiz] do |f|
+    = render 'layouts/error_explanation', f: f
 
-  .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :state
-    = f.text_field :state
-  .actions = f.submit
+    - @questionnaire.questions.each do |question|
+
+      p= question
+      - if question.kind == "checkbox"
+        p
+          - question.choices.each do |choice|
+            = label_tag nil, style:"display:inline; margin-right:20px" do
+              = check_box_tag "answer_#{question.id}[]", choice.id
+              = choice
+
+      - elsif question.kind == "radiobutton"
+        p
+          - question.choices.each do |choice|
+            = label_tag nil, style:"display:inline; margin-right:20px" do
+              = radio_button_tag "answer_#{question.id}[]", choice.id
+              = choice
+
+      - elsif question.kind == "multitext"
+        p
+          - question.choices.each do |choice|
+            = label_tag nil, style:"display:inline; margin-right:20px" do
+              = choice
+              = text_field_tag "answer_#{question.id}_#{choice.id}"
+              br
+
+      - elsif question.kind == "text"
+        p= text_area_tag "answer_#{question.id}"
+
+      - if question.kind == "boolean"
+
+          = label_tag do
+            = radio_button_tag "answer_#{question.id}", 1, false, required:true
+            | Verdadero
+
+          = label_tag do
+            = radio_button_tag "answer_#{question.id}", 0, false, required:true
+            | Falso
+
+    .actions = f.submit
+

@@ -15,7 +15,9 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/new
   def new
-    @quiz = Quiz.new
+    @quiz = @questionnaire.quizzes.new
+    @quiz.user = current_user
+    authorize @quiz
   end
 
   # GET /quizzes/1/edit
@@ -25,8 +27,9 @@ class QuizzesController < ApplicationController
   # POST /quizzes
   # POST /quizzes.json
   def create
-    @quiz = Quiz.new(quiz_params)
-
+    @quiz = @questionnaire.quizzes.new(quiz_params)
+    @quiz.user = current_user
+    authorize @quiz
     respond_to do |format|
       if @quiz.save
         format.html { redirect_to @quiz, notice: 'Quiz was successfully created.' }
@@ -57,7 +60,7 @@ class QuizzesController < ApplicationController
   def destroy
     @quiz.destroy
     respond_to do |format|
-      format.html { redirect_to quizzes_url, notice: 'Quiz was successfully destroyed.' }
+      format.html { redirect_to quizzes_path, notice: 'Quiz was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,7 +73,13 @@ class QuizzesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
-      params.require(:quiz).permit(:user_id, :state)
+      params.require(:quiz).permit(
+        answers_attributes:[
+          :question_id,
+          :choice_id,
+          :body
+        ]
+      )
     end
 
     def set_questionnaire
