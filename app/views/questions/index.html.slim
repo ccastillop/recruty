@@ -8,6 +8,7 @@ table
       th Kind
       th Name
       th Body
+      th Opciones
       th
       th
       th
@@ -17,7 +18,8 @@ table
       tr
         td = question.kind
         td = question.name
-        td = question.body
+        td = question.body.truncate(25)
+        td = link_to "#{question.choices.count} opciones", question_choices_path(question)
         td = link_to 'Show', question
         td = link_to 'Edit', edit_question_path(question)
         td = link_to 'Destroy', question, data: { confirm: 'Are you sure?' }, method: :delete

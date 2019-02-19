@@ -1,10 +1,11 @@
 class ChoicesController < ApplicationController
+  before_action :set_question, except: [:show, :edit, :update, :destroy]
   before_action :set_choice, only: [:show, :edit, :update, :destroy]
 
   # GET /choices
   # GET /choices.json
   def index
-    @choices = Choice.all
+    @choices = @question.choices
   end
 
   # GET /choices/1
@@ -14,7 +15,8 @@ class ChoicesController < ApplicationController
 
   # GET /choices/new
   def new
-    @choice = Choice.new
+    @choice = @question.choices.new
+    authorize @choice
   end
 
   # GET /choices/1/edit
@@ -24,8 +26,8 @@ class ChoicesController < ApplicationController
   # POST /choices
   # POST /choices.json
   def create
-    @choice = Choice.new(choice_params)
-
+    @choice = @question.choices.new(choice_params)
+    authorize @choice
     respond_to do |format|
       if @choice.save
         format.html { redirect_to @choice, notice: 'Choice was successfully created.' }
@@ -56,7 +58,7 @@ class ChoicesController < ApplicationController
   def destroy
     @choice.destroy
     respond_to do |format|
-      format.html { redirect_to choices_url, notice: 'Choice was successfully destroyed.' }
+      format.html { redirect_to question_choices_url(@choice.question), notice: 'Choice was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -65,10 +67,16 @@ class ChoicesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_choice
       @choice = Choice.find(params[:id])
+      authorize @choice
+    end
+
+    def set_question
+      @question = Question.find(params[:question_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def choice_params
-      params.require(:choice).permit(:question_id, :body, :score)
+      params.require(:choice).permit(:body, :score)
     end
-end
+
+  end

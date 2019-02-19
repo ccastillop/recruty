@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_questionnaire, except: [:show, :edit, :update]
+  before_action :set_questionnaire, except: [:show, :edit, :update, :destroy]
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -46,7 +46,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questionaire_questions_url(@questionnaire), notice: 'Question was successfully destroyed.' }
+      format.html { redirect_to questionnaire_questions_url(@question.questionnaire), notice: 'Question was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

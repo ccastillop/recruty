@@ -1,5 +1,5 @@
 class Question < ApplicationRecord
-  has_many :choices
+  has_many :choices, dependent: :restrict_with_error
   belongs_to :questionnaire
 
   validates :kind, :name, presence: true

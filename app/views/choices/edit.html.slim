@@ -1,8 +1,8 @@
-h1 Editing choice
+h1.title Editing choice
 
 == render 'form'
 
 => link_to 'Show', @choice
 '|
-=< link_to 'Back', choices_path
+=< link_to 'Back', question_choices_path(@choice.question)
 

@@ -1,6 +1,7 @@
-h1 Listing choices
+h1.title Listing choices
+= link_to 'New Choice', new_question_choice_path(@question)
 
-table
+table.table.is-striped.is-narrow.is-hoverable
   thead
     tr
       th Question
@@ -20,6 +21,3 @@ table
         td = link_to 'Edit', edit_choice_path(choice)
         td = link_to 'Destroy', choice, data: { confirm: 'Are you sure?' }, method: :delete
 
-br
-
-= link_to 'New Choice', new_choice_path

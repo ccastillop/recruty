@@ -1,0 +1,3 @@
+class ChoicePolicy < ApplicationPolicy
+
+end

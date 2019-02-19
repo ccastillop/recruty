@@ -1,5 +1,3 @@
-p#notice = notice
-
 p
   strong Question:
   = @choice.question
@@ -12,4 +10,4 @@ p
 
 => link_to 'Edit', edit_choice_path(@choice)
 '|
-=< link_to 'Back', choices_path
+=< link_to 'Back', question_choices_path(@choice.question)

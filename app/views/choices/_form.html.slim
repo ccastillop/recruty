@@ -1,18 +1,10 @@
-= form_for @choice do |f|
-  - if @choice.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@choice.errors.count, "error")} prohibited this choice from being saved:"
-      ul
-        - @choice.errors.full_messages.each do |message|
-          li = message
+= form_for [@question, @choice] do |f|
+  = render 'layouts/error_explanation', f: f
 
-  .field
-    = f.label :question
-    = f.text_field :question
-  .field
-    = f.label :body
-    = f.text_area :body
-  .field
-    = f.label :score
-    = f.number_field :score
-  .actions = f.submit
+  = form_group_for f, :body, label: :body do
+    = f.text_area :body, class: "textarea"
+
+  = form_group_for f, :score, label: :score do
+    = f.text_field :score, class: "input"
+
+  .field = f.submit class:"button is-link"
