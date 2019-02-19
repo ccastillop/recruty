@@ -1,6 +1,6 @@
 h1.title Usuarios
 
-table.table.is-bordered.is-striped.is-narrow.is-hoverable
+table.table.is-striped.is-narrow.is-hoverable
   thead
     tr
       th Email
@@ -13,6 +13,8 @@ table.table.is-bordered.is-striped.is-narrow.is-hoverable
       tr
         td = user.email
         td = user.name
-        td = image_tag user.image_url
+        td
+          figure.image.is-128x128
+            img.is-rounded src=user.image_url
         td = link_to 'Show', user
 

@@ -1,13 +1,13 @@
-= form_for [@questionnarie, @question] do |f|
+= form_for [@questionnaire, @question] do |f|
   = render 'layouts/error_explanation', f: f
 
-  .field
-    = f.label :kind
-    = f.text_field :kind
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :body
-    = f.text_area :body
-  .actions = f.submit
+  = form_group_for f, :kind, label: :kind, control_class: "select" do
+    = f.select :kind, Question::KINDS, include_blank: true
+
+  = form_group_for f, :name, label: :name do
+    = f.text_field :name, class: "input"
+
+  = form_group_for f, :body, label: :body do
+    = f.text_area :body, class: "textarea"
+
+  .field = f.submit class:"button is-link"

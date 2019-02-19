@@ -7,10 +7,11 @@ module FormHelper
 
   def form_group_for(form, field, opts={}, &block)
     label = opts.fetch(:label) { true }
+    control_class = opts.fetch(:control_class) { "control" }
     has_errors = form.object.errors[field].present?
     content_tag :div, class: "field #{'is-danger' if has_errors}" do
       concat form.label(field, class: 'label') if label
-      concat content_tag( :div, class: "control", &block)
+      concat content_tag( :div, class: control_class, &block)
       concat errors_for(form, field)
     end
   end

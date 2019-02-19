@@ -22,8 +22,8 @@ class QuestionsController < ApplicationController
     authorize @question
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
-        format.json { render :show, status: :created, location: @question }
+        format.html { redirect_to [@questionnaire, @question], notice: 'Question was successfully created.' }
+        format.json { render :show, status: :created, location: [@questionnaire, @question] }
       else
         format.html { render :new }
         format.json { render json: @question.errors, status: :unprocessable_entity }
@@ -34,8 +34,8 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
-        format.json { render :show, status: :ok, location: @question }
+        format.html { redirect_to [@questionnaire, @question], notice: 'Question was successfully updated.' }
+        format.json { render :show, status: :ok, location: [@questionnaire, @question] }
       else
         format.html { render :edit }
         format.json { render json: @question.errors, status: :unprocessable_entity }
@@ -58,7 +58,7 @@ class QuestionsController < ApplicationController
     end
 
     def question_params
-      params.require(:question).permit(:questionnarie_id, :kind, :name, :body)
+      params.require(:question).permit(:kind, :name, :body)
     end
 
     def set_questionnaire
