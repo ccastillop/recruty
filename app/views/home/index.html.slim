@@ -5,7 +5,10 @@ h1.title Recluty
       h2 Bienvenido #{current_user}
       p Por favor responde estos cuestionarios.
       h3 Cuestionarios para responder
-      h3 Cuestionarios ya respondidos
+      ul
+        - Questionnaire.all.each do |questionnaire|
+          li= link_to questionnaire, new_questionnaire_quiz_path(questionnaire), class: "button is-link"
+
   - else
     p 
       span> Por favor inicie sesión con Google para continuar.

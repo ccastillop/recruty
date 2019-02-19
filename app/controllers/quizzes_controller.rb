@@ -1,10 +1,11 @@
 class QuizzesController < ApplicationController
+  before_action :set_questionnaire, except: [:show, :edit, :update, :destroy]
   before_action :set_quiz, only: [:show, :edit, :update, :destroy]
 
   # GET /quizzes
   # GET /quizzes.json
   def index
-    @quizzes = Quiz.all
+    @quizzes = policy_scope(Quiz.all)
   end
 
   # GET /quizzes/1
@@ -71,4 +72,9 @@ class QuizzesController < ApplicationController
     def quiz_params
       params.require(:quiz).permit(:user_id, :state)
     end
+
+    def set_questionnaire
+      @questionnaire = Questionnaire.find(params[:questionnaire_id])
+    end
+
 end

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :questions do
       resources :choices
     end
+    resources :quizzes
   end
 
   resources :users, only: [:index, :show]
