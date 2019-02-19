@@ -1,6 +1,9 @@
-h1.title Preguntas de #{@questionnaire}
+h1.title Preguntas (#{@questions.count})
+p.subtitle 
+  span> Cuestionario: 
+  = link_to @questionnaire, @questionnaire
 
-= link_to 'Nueva pregunta', new_questionnaire_question_path(@questionnaire)
+= link_to 'Nueva pregunta', new_questionnaire_question_path(@questionnaire), class:"button is-primary"
 
 table
   thead.table.is-striped.is-narrow.is-hoverable

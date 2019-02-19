@@ -30,8 +30,8 @@ class ChoicesController < ApplicationController
     authorize @choice
     respond_to do |format|
       if @choice.save
-        format.html { redirect_to @choice, notice: 'Choice was successfully created.' }
-        format.json { render :show, status: :created, location: @choice }
+        format.html { redirect_to question_choices_path(@question), notice: 'Choice was successfully created.' }
+        format.json { render :show, status: :created, location: question_choices_path(@question) }
       else
         format.html { render :new }
         format.json { render json: @choice.errors, status: :unprocessable_entity }
@@ -44,8 +44,8 @@ class ChoicesController < ApplicationController
   def update
     respond_to do |format|
       if @choice.update(choice_params)
-        format.html { redirect_to @choice, notice: 'Choice was successfully updated.' }
-        format.json { render :show, status: :ok, location: @choice }
+        format.html { redirect_to question_choices_path(@choice.question), notice: 'Choice was successfully updated.' }
+        format.json { render :show, status: :ok, location: question_choices_path(@choice.question) }
       else
         format.html { render :edit }
         format.json { render json: @choice.errors, status: :unprocessable_entity }

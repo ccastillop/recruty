@@ -1,10 +1,15 @@
-h1.title Listing choices
-= link_to 'New Choice', new_question_choice_path(@question)
+h1.title Opciones (#{@choices.count})
+p.subtitle 
+  span<> Pregunta: 
+  = link_to @question, @question
+  span<> Cuestionario: 
+  = link_to @question.questionnaire, @question.questionnaire
+
+p= link_to 'Nueva opción', new_question_choice_path(@question), class:"button is-primary"
 
 table.table.is-striped.is-narrow.is-hoverable
   thead
     tr
-      th Question
       th Body
       th Score
       th
@@ -14,7 +19,6 @@ table.table.is-striped.is-narrow.is-hoverable
   tbody
     - @choices.each do |choice|
       tr
-        td = choice.question
         td = choice.body
         td = choice.score
         td = link_to 'Show', choice

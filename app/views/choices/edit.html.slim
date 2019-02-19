@@ -1,4 +1,9 @@
-h1.title Editing choice
+h1.title Modificando opción
+p.subtitle 
+  span<> Pregunta: 
+  = link_to @choice.question, @choice.question
+  span<> Cuestionario: 
+  = link_to @choice.question.questionnaire, @choice.question.questionnaire
 
 == render 'form'
 

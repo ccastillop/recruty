@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:index, :show]
+  resources :quizzes
 
   get 'home/index'
   root 'home#index'
@@ -17,6 +18,6 @@ Rails.application.routes.draw do
   resource :session, only: [:create, :destroy]
 
   # resources :answers
-  # resources :quizzes
+
 
 end

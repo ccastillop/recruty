@@ -13,8 +13,7 @@
 ActiveRecord::Schema.define(version: 2019_02_18_163335) do
 
   create_table "answers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "questionnaire_id"
+    t.bigint "quiz_id"
     t.bigint "question_id"
     t.bigint "choice_id"
     t.text "body"
@@ -23,8 +22,7 @@ ActiveRecord::Schema.define(version: 2019_02_18_163335) do
     t.datetime "updated_at", null: false
     t.index ["choice_id"], name: "index_answers_on_choice_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
-    t.index ["questionnaire_id"], name: "index_answers_on_questionnaire_id"
-    t.index ["user_id"], name: "index_answers_on_user_id"
+    t.index ["quiz_id"], name: "index_answers_on_quiz_id"
   end
 
   create_table "choices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -55,9 +53,11 @@ ActiveRecord::Schema.define(version: 2019_02_18_163335) do
 
   create_table "quizzes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
+    t.bigint "questionnaire_id"
     t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["questionnaire_id"], name: "index_quizzes_on_questionnaire_id"
     t.index ["user_id"], name: "index_quizzes_on_user_id"
   end
 

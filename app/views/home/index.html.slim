@@ -1,16 +1,34 @@
-h1 Recluty
-p Buscamos personas interesadas
-p explicación
-p disclamer
+h1.title Recluty
 
-- if logged_in?
-  - if current_user.admin?
-    h2 Menú admin
-    ul
-      li= link_to "Usuarios (#{User.count})", users_path
-      li= link_to "Cuestionarios (#{Questionnaire.count})", questionnaires_path
-      li= "formularios respondidos..."
+.content
+  - if logged_in?
+      h2 Bienvenido #{current_user}
+      p Por favor responde estos cuestionarios.
+      h3 Cuestionarios para responder
+      h3 Cuestionarios ya respondidos
+  - else
+    p 
+      span> Por favor inicie sesión con Google para continuar.
+      br
+      = link_to "Ingresar con Google", login_path, class:"button is-primary"
+.content.is-small 
+  h3 Notas: 
 
-  - if current_user.normal?
-    h2 Bienvenido #{current_user}
-    p Lista de cuestionarios para contestar...:
+  ul
+    li 
+      span<> Usamos intensivamente herramientas Google. Por favor créate una. 
+      = link_to "¿No tienes cuenta en Google?", "https://es.wikipedia.org/wiki/Cuenta_de_Google", target: :_blank
+
+    li 
+      span> Si tiene dificultades por favor generar un 
+      em= link_to "issue en Github", "https://github.com/ccastillop/recluty/issues", target: :_blank
+
+    li
+      span> ¿Quieres mejorar esta app?, puedes 
+      em= link_to "crear un PR", "https://github.com/ccastillop/recluty/pulls", target: :_blank
+
+    li
+      span> El código fuente está en
+      em= link_to "Github", "https://github.com/ccastillop/recluty", target: :_blank
+
+

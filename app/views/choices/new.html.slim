@@ -1,4 +1,9 @@
-h1.title New choice
+h1.title Nueva opción
+p.subtitle 
+  span<> Pregunta: 
+  = link_to @question, @question
+  span<> Cuestionario: 
+  = link_to @question.questionnaire, @question.questionnaire
 
 == render 'form'
 

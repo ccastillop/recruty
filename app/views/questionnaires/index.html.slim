@@ -1,6 +1,6 @@
 h1.title Cuestionarios (#{Questionnaire.count})
 
-= link_to 'New Questionnaire', new_questionnaire_path
+p= link_to 'New Questionnaire', new_questionnaire_path, class:"button is-primary"
 
 table.table.is-striped.is-narrow.is-hoverable
   thead
@@ -17,10 +17,8 @@ table.table.is-striped.is-narrow.is-hoverable
       tr
         td = questionnaire.name
         td = questionnaire.instructions
-        td = link_to "#{questionnaire.questions.count} Questions", questionnaire_questions_path(questionnaire)
+        td 
+          = link_to "#{questionnaire.questions.count} Questions", questionnaire_questions_path(questionnaire)
         td = link_to 'Show', questionnaire
         td = link_to 'Edit', edit_questionnaire_path(questionnaire)
         td = link_to 'Destroy', questionnaire, data: { confirm: 'Are you sure?' }, method: :delete
-
-
-
