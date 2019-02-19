@@ -44,13 +44,13 @@ ActiveRecord::Schema.define(version: 2019_02_18_163335) do
   end
 
   create_table "questions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "questionaire_id"
+    t.bigint "questionnaire_id"
     t.string "kind"
     t.string "name"
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["questionaire_id"], name: "index_questions_on_questionaire_id"
+    t.index ["questionnaire_id"], name: "index_questions_on_questionnaire_id"
   end
 
   create_table "quizzes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

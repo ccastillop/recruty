@@ -1,31 +1,24 @@
 class QuestionnairesController < ApplicationController
   before_action :set_questionnaire, only: [:show, :edit, :update, :destroy]
 
-  # GET /questionnaires
-  # GET /questionnaires.json
   def index
-    @questionnaires = Questionnaire.all
+    @questionnaires = policy_scope(Questionnaire.all)
   end
 
-  # GET /questionnaires/1
-  # GET /questionnaires/1.json
   def show
   end
 
-  # GET /questionnaires/new
   def new
     @questionnaire = Questionnaire.new
+    authorize @questionnaire
   end
 
-  # GET /questionnaires/1/edit
   def edit
   end
 
-  # POST /questionnaires
-  # POST /questionnaires.json
   def create
     @questionnaire = Questionnaire.new(questionnaire_params)
-
+    authorize @questionnaire
     respond_to do |format|
       if @questionnaire.save
         format.html { redirect_to @questionnaire, notice: 'Questionnaire was successfully created.' }
@@ -37,8 +30,6 @@ class QuestionnairesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /questionnaires/1
-  # PATCH/PUT /questionnaires/1.json
   def update
     respond_to do |format|
       if @questionnaire.update(questionnaire_params)
@@ -51,8 +42,6 @@ class QuestionnairesController < ApplicationController
     end
   end
 
-  # DELETE /questionnaires/1
-  # DELETE /questionnaires/1.json
   def destroy
     @questionnaire.destroy
     respond_to do |format|
@@ -62,12 +51,11 @@ class QuestionnairesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_questionnaire
       @questionnaire = Questionnaire.find(params[:id])
+      authorize @questionnaire
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def questionnaire_params
       params.require(:questionnaire).permit(:name, :instructions)
     end

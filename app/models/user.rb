@@ -8,7 +8,7 @@ class User < ApplicationRecord
     level == 'normal'
   end
 
-  def current_user
+  def to_s
     name
   end
 

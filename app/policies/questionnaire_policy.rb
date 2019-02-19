@@ -1,0 +1,3 @@
+class QuestionnairePolicy < ApplicationPolicy
+
+end

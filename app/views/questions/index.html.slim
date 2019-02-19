@@ -1,9 +1,10 @@
-h1 Listing questions
+h1.title Preguntas de #{@questionnaire}
+
+= link_to 'Nueva pregunta', new_questionnaire_question_path(@questionnaire)
 
 table
   thead
     tr
-      th Questionnarie
       th Kind
       th Name
       th Body
@@ -14,7 +15,6 @@ table
   tbody
     - @questions.each do |question|
       tr
-        td = question.questionnarie
         td = question.kind
         td = question.name
         td = question.body
@@ -22,6 +22,4 @@ table
         td = link_to 'Edit', edit_question_path(question)
         td = link_to 'Destroy', question, data: { confirm: 'Are you sure?' }, method: :delete
 
-br
 
-= link_to 'New Question', new_question_path

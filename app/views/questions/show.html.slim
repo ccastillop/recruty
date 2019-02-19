@@ -1,5 +1,3 @@
-p#notice = notice
-
 p
   strong Questionnarie:
   = @question.questionnarie
@@ -15,4 +13,4 @@ p
 
 => link_to 'Edit', edit_question_path(@question)
 '|
-=< link_to 'Back', questions_path
+=< link_to 'Back', questionnaire_questions_path(@questionnarie)

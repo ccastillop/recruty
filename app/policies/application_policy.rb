@@ -2,7 +2,8 @@ class ApplicationPolicy
   attr_reader :user, :record
 
   def initialize(user, record)
-    @user = user
+    raise Pundit::NotAuthorizedError, "must be logged in" unless user
+    @user = user 
     @record = record
   end
 
@@ -23,6 +24,7 @@ class ApplicationPolicy
     attr_reader :user, :scope
 
     def initialize(user, scope)
+      raise Pundit::NotAuthorizedError, "must be logged in" unless user
       @user = user
       @scope = scope
     end
@@ -31,7 +33,8 @@ class ApplicationPolicy
       if user.admin?
         scope
       else user.normal?
-        scope.where(user_id: user.id)
+        #scope.where(user_id: user.id)
+        scope.none
       end
     end
   end
@@ -39,7 +42,8 @@ class ApplicationPolicy
   private
 
     def normal_can_modify?
-      record.user.present? && record.user == user
+      false
+      #record.user.present? && record.user == user
     end
 
 end
