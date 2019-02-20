@@ -18,7 +18,7 @@ nav.navbar aria-label=("main navigation") role="navigation"
             | Opciones
           .navbar-dropdown
             a.navbar-item href=quizzes_path
-              | Cuestionarios respondidos (#{current_user.quizzes.count})
+              | Mis evaluaciones (#{current_user.quizzes.count} contestadas)
             - if current_user.admin?
               a.navbar-item href=users_path
                 | Usuarios (#{User.count})

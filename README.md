@@ -1,5 +1,11 @@
 # README
 
+Deployed on Google Cloud
+
+Accessing Google Engine Rails console: 
+
+https://gist.github.com/kyptin/e5da270a54abafac2fbfcd9b52cafb61
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
