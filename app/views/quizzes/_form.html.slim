@@ -51,7 +51,7 @@
               = label_tag nil, class:"radio" do
                 = ff.radio_button :choice_id, choice.id
                 = choice
-
+        hr
       - elsif question.kind == "boolean"
         - answer = answers.first
         - answer ||= @quiz.answers.build(question_id: question.id)
