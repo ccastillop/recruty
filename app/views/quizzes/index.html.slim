@@ -17,8 +17,8 @@ h1.title Cuestionarios
     thead
       tr
         th User
-        th Cuestionario
-        th State
+        th Cuest.
+        th Estado
         th
         th
         th
@@ -26,9 +26,17 @@ h1.title Cuestionarios
     tbody
       - @quizzes.each do |quiz|
         tr
-          td = quiz.user
+          td 
+            = quiz.user
+            br
+            = quiz.user.email
           td = quiz.questionnaire
-          td = quiz.state
+          td 
+            = quiz.state
+            br
+            = l quiz.created_at, format: :short
+            br
+            = l quiz.updated_at, format: :short
           td = link_to 'Ver', quiz
           td = link_to 'Modificar', edit_quiz_path(quiz)
           td = link_to 'Eliminar', quiz, data: { confirm: 'Are you sure?' }, method: :delete

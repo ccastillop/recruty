@@ -15,7 +15,7 @@ nav.navbar aria-label=("main navigation") role="navigation"
       .navbar-item.has-dropdown.is-hoverable
         - if logged_in?
           a.navbar-link
-            strong= current_user.level
+            | Opciones
           .navbar-dropdown
             a.navbar-item href=quizzes_path
               | Cuestionarios respondidos (#{current_user.quizzes.count})

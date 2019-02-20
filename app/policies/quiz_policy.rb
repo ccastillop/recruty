@@ -12,4 +12,10 @@ class QuizPolicy < ApplicationPolicy
     end
   end
 
+  private
+
+    def normal_can_modify?
+      record.user.present? && record.user == user
+    end
+
 end
