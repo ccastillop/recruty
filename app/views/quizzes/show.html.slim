@@ -1,13 +1,18 @@
-p
-  strong Cuestionario:
-  = @quiz.questionnaire
-p
-  strong User:
-  = @quiz.user
-p
-  strong State:
-  = @quiz.state
+.content
+  p
+    strong Cuestionario:
+    = @quiz.questionnaire
+  p
+    strong User:
+    = @quiz.user
 
-=> link_to 'Edit', edit_quiz_path(@quiz)
-'|
-=< link_to 'Back', questionnaire_quizzes_path(@quiz.questionnaire)
+  h4 Respuestas
+  - @quiz.answers.each do |answer|
+    p
+      strong= answer.question
+      br
+      = "#{answer.choice} #{answer.body} #{answer.booly}"
+
+  => link_to 'Edit', edit_quiz_path(@quiz)
+  '|
+  =< link_to 'Back', quizzes_path

@@ -1,5 +1,4 @@
 class QuizzesController < ApplicationController
-  before_action :set_questionnaire, except: [:show, :edit, :update, :destroy]
   before_action :set_quiz, only: [:show, :edit, :update, :destroy]
 
   # GET /quizzes
@@ -15,21 +14,20 @@ class QuizzesController < ApplicationController
 
   # GET /quizzes/new
   def new
-    @quiz = @questionnaire.quizzes.new
+    questionnaire = Questionnaire.find params[:questionnaire_id]
+    @quiz = questionnaire.quizzes.new
     @quiz.user = current_user
     authorize @quiz
-    #@quiz.prepare_answers!
   end
 
   # GET /quizzes/1/edit
   def edit
-    #@quiz.prepare_answers!
   end
 
   # POST /quizzes
   # POST /quizzes.json
   def create
-    @quiz = @questionnaire.quizzes.new(quiz_params)
+    @quiz = Quiz.new(quiz_params)
     @quiz.user = current_user
     authorize @quiz
     respond_to do |format|
@@ -64,7 +62,7 @@ class QuizzesController < ApplicationController
   def destroy
     @quiz.destroy
     respond_to do |format|
-      format.html { redirect_to questionnaire_quizzes_path(@quiz.questionnaire), notice: 'Quiz was successfully destroyed.' }
+      format.html { redirect_to quizzes_path, notice: 'Quiz was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -76,13 +74,10 @@ class QuizzesController < ApplicationController
       authorize @quiz
     end
 
-    def set_questionnaire
-      @questionnaire = Questionnaire.find(params[:questionnaire_id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
       params.require(:quiz).permit(
+        :questionnaire_id,
         answers_attributes:[
           :id,
           :question_id,

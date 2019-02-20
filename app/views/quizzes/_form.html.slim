@@ -1,5 +1,6 @@
 .content
-  = form_for [@questionnaire, @quiz] do |f|
+  = form_for @quiz do |f|
+    = f.hidden_field :questionnaire_id
     = render 'layouts/error_explanation', f: f
 
     - @quiz.questionnaire.questions.each do |question|

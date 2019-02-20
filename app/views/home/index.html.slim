@@ -1,25 +1,31 @@
 h1.title Recluty
 
 .content
+  p 
+    | Gracias por participar en el registro de muestra de interés.
+    br
+    | Por favor responde estos cuestionarios para guardar un registro de tu participación.
+
   - if logged_in?
-      h2 Bienvenido #{current_user}
-      p Por favor responde estos cuestionarios.
-      h3 Cuestionarios para responder
-      ul
-        - Questionnaire.all.each do |questionnaire|
-          li= link_to questionnaire, new_questionnaire_quiz_path(questionnaire), class: "button is-link"
+      p 
+        | Bienvenido 
+        strong #{current_user}
+      
+      p = link_to "Contestar y/o modificar cuestionarios", quizzes_path, class:"button is-primary"
 
   - else
     p 
       span> Por favor inicie sesión con Google para continuar.
       br
       = link_to "Ingresar con Google", login_path, class:"button is-primary"
+
 .content.is-small 
-  h3 Notas: 
+
+  h3 Nótese que 
 
   ul
     li 
-      span<> Usamos intensivamente herramientas Google. Por favor créate una. 
+      span<> Usamos intensivamente herramientas Google. 
       = link_to "¿No tienes cuenta en Google?", "https://es.wikipedia.org/wiki/Cuenta_de_Google", target: :_blank
 
     li 
@@ -33,5 +39,10 @@ h1.title Recluty
     li
       span> El código fuente está en
       em= link_to "Github", "https://github.com/ccastillop/recluty", target: :_blank
+
+    li 
+      | Este no es un ofrecimiento formal de trabajo, sólo un registro de interés en participar en procesos de selección.
+
+
 
 

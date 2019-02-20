@@ -1,13 +1,13 @@
 h1.title Modificando evaluación
 p.subtitle
   span<> Cuestionario: 
-  span<> = @quiz.questionnaire
+  strong<> = @quiz.questionnaire
   span<> Usuario:
-  span<> = @quiz.user
+  strong<> = @quiz.user
 
 == render 'form'
 
 => link_to 'Show', @quiz
 '|
-=< link_to 'Back', questionnaire_quizzes_path(@quiz.questionnaire)
+=< link_to 'Back', quizzes_path(@quiz.questionnaire)
 

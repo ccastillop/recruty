@@ -10,21 +10,22 @@ nav.navbar aria-label=("main navigation") role="navigation"
     .navbar-start
       a.navbar-item href=root_path
         | Home
-      a.navbar-item
-        | Something
+      / a.navbar-item
+      /   | Something
       .navbar-item.has-dropdown.is-hoverable
-        - if logged_in? && current_user.admin?
+        - if logged_in?
           a.navbar-link
-            strong Admin
+            strong= current_user.level
           .navbar-dropdown
-            a.navbar-item href=users_path
-              | Usuarios (#{User.count})
-            a.navbar-item href=questionnaires_path
-              | Cuestionarios (#{Questionnaire.count})
-            a.navbar-item
-              | Contact
+            a.navbar-item href=quizzes_path
+              | Cuestionarios respondidos (#{current_user.quizzes.count})
+            - if current_user.admin?
+              a.navbar-item href=users_path
+                | Usuarios (#{User.count})
+              a.navbar-item href=questionnaires_path
+                | Cuestionarios (#{Questionnaire.count})
             hr.navbar-divider/
-            a.navbar-item
+            a.navbar-item href="https://github.com/ccastillop/recluty/issues" target="_blank"
               | Report an issue
 
     .navbar-end
