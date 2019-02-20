@@ -18,10 +18,12 @@ class QuizzesController < ApplicationController
     @quiz = @questionnaire.quizzes.new
     @quiz.user = current_user
     authorize @quiz
+    #@quiz.prepare_answers!
   end
 
   # GET /quizzes/1/edit
   def edit
+    #@quiz.prepare_answers!
   end
 
   # POST /quizzes
@@ -32,9 +34,10 @@ class QuizzesController < ApplicationController
     authorize @quiz
     respond_to do |format|
       if @quiz.save
-        format.html { redirect_to @quiz, notice: 'Quiz was successfully created.' }
-        format.json { render :show, status: :created, location: @quiz }
+        format.html { redirect_to edit_quiz_path(@quiz), notice: 'Quiz was successfully created.' }
+        format.json { render :show, status: :created, location: edit_quiz_path(@quiz) }
       else
+        #@quiz.prepare_answers!
         format.html { render :new }
         format.json { render json: @quiz.errors, status: :unprocessable_entity }
       end
@@ -46,9 +49,10 @@ class QuizzesController < ApplicationController
   def update
     respond_to do |format|
       if @quiz.update(quiz_params)
-        format.html { redirect_to @quiz, notice: 'Quiz was successfully updated.' }
-        format.json { render :show, status: :ok, location: @quiz }
+        format.html { redirect_to edit_quiz_path(@quiz), notice: 'Quiz was successfully updated.' }
+        format.json { render :show, status: :ok, location: edit_quiz_path(@quiz) }
       else
+        #@quiz.prepare_answers!
         format.html { render :edit }
         format.json { render json: @quiz.errors, status: :unprocessable_entity }
       end
@@ -60,7 +64,7 @@ class QuizzesController < ApplicationController
   def destroy
     @quiz.destroy
     respond_to do |format|
-      format.html { redirect_to quizzes_path, notice: 'Quiz was successfully destroyed.' }
+      format.html { redirect_to questionnaire_quizzes_path(@quiz.questionnaire), notice: 'Quiz was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,21 +73,24 @@ class QuizzesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_quiz
       @quiz = Quiz.find(params[:id])
+      authorize @quiz
+    end
+
+    def set_questionnaire
+      @questionnaire = Questionnaire.find(params[:questionnaire_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def quiz_params
       params.require(:quiz).permit(
         answers_attributes:[
+          :id,
           :question_id,
           :choice_id,
-          :body
+          :body,
+          :booly
         ]
       )
-    end
-
-    def set_questionnaire
-      @questionnaire = Questionnaire.find(params[:questionnaire_id])
     end
 
 end

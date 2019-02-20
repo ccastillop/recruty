@@ -5,6 +5,7 @@ class CreateAnswers < ActiveRecord::Migration[5.2]
       t.references :question
       t.references :choice
       t.text :body
+      t.boolean :booly
       t.integer :score, default: 0
 
       t.timestamps

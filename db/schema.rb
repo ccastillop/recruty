@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2019_02_18_163335) do
     t.bigint "question_id"
     t.bigint "choice_id"
     t.text "body"
+    t.boolean "booly"
     t.integer "score", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
