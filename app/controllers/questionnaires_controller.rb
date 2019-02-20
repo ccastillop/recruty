@@ -3,7 +3,6 @@ class QuestionnairesController < ApplicationController
 
   def index
     @questionnaires = policy_scope(Questionnaire.all)
-    authorize Questionnaire
   end
 
   def show

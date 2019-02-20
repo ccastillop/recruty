@@ -1,0 +1,3 @@
+class AnswerPolicy < ApplicationPolicy
+
+end

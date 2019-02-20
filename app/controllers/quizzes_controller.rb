@@ -34,8 +34,8 @@ class QuizzesController < ApplicationController
     authorize @quiz
     respond_to do |format|
       if @quiz.save
-        format.html { redirect_to edit_quiz_path(@quiz), notice: 'Quiz was successfully created.' }
-        format.json { render :show, status: :created, location: edit_quiz_path(@quiz) }
+        format.html { redirect_to @quiz, notice: 'Quiz was successfully created.' }
+        format.json { render :show, status: :created, location: @quiz }
       else
         #@quiz.prepare_answers!
         format.html { render :new }
@@ -49,8 +49,8 @@ class QuizzesController < ApplicationController
   def update
     respond_to do |format|
       if @quiz.update(quiz_params)
-        format.html { redirect_to edit_quiz_path(@quiz), notice: 'Quiz was successfully updated.' }
-        format.json { render :show, status: :ok, location: edit_quiz_path(@quiz) }
+        format.html { redirect_to @quiz, notice: 'Quiz was successfully updated.' }
+        format.json { render :show, status: :ok, location: @quiz }
       else
         #@quiz.prepare_answers!
         format.html { render :edit }
