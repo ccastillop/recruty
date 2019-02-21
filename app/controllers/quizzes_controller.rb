@@ -32,8 +32,8 @@ class QuizzesController < ApplicationController
     authorize @quiz
     respond_to do |format|
       if @quiz.save
-        format.html { redirect_to @quiz, notice: 'Quiz was successfully created.' }
-        format.json { render :show, status: :created, location: @quiz }
+        format.html { redirect_to edit_quiz_path(@quiz), notice: '¡Gracias! Registré sus respuestas' }
+        format.json { render :show, status: :created, location: edit_quiz_path(@quiz) }
       else
         #@quiz.prepare_answers!
         format.html { render :new }
@@ -47,8 +47,8 @@ class QuizzesController < ApplicationController
   def update
     respond_to do |format|
       if @quiz.update(quiz_params)
-        format.html { redirect_to @quiz, notice: 'Quiz was successfully updated.' }
-        format.json { render :show, status: :ok, location: @quiz }
+        format.html { redirect_to edit_quiz_path(@quiz), notice: '¡Gracias! guardé sus cambios' }
+        format.json { render :show, status: :ok, location: edit_quiz_path(@quiz) }
       else
         #@quiz.prepare_answers!
         format.html { render :edit }
@@ -62,7 +62,7 @@ class QuizzesController < ApplicationController
   def destroy
     @quiz.destroy
     respond_to do |format|
-      format.html { redirect_to quizzes_path, notice: 'Quiz was successfully destroyed.' }
+      format.html { redirect_to quizzes_path, notice: 'Se destruyeron sus respuestas.' }
       format.json { head :no_content }
     end
   end

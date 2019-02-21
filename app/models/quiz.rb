@@ -23,4 +23,8 @@ class Quiz < ApplicationRecord
     self.state = machine.state
   end
 
+  def to_s
+    questionnaire.to_s
+  end
+
 end
