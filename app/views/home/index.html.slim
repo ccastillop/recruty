@@ -11,38 +11,13 @@ h1.title Recluty
         | Bienvenido 
         strong #{current_user}
       
-      p = link_to "Contestar y/o modificar cuestionarios", quizzes_path, class:"button is-primary"
+      p = link_to "Contestar y/o modificar cuestionarios", quizzes_path, class:"button is-link"
 
   - else
     p 
       span> Por favor inicie sesión con Google para continuar.
       br
       = link_to "Ingresar con Google", login_path, class:"button is-primary"
-
-.content.is-small 
-
-  h3 Nótese que 
-
-  ul
-    li 
-      span<> Usamos intensivamente herramientas Google. 
-      = link_to "¿No tienes cuenta en Google?", "https://es.wikipedia.org/wiki/Cuenta_de_Google", target: :_blank
-
-    li 
-      span> Si tiene dificultades por favor generar un 
-      em= link_to "issue en Github", "https://github.com/ccastillop/recluty/issues", target: :_blank
-
-    li
-      span> ¿Quieres mejorar esta app?, puedes 
-      em= link_to "crear un PR", "https://github.com/ccastillop/recluty/pulls", target: :_blank
-
-    li
-      span> El código fuente está en
-      em= link_to "Github", "https://github.com/ccastillop/recluty", target: :_blank
-
-    li 
-      | Este no es un ofrecimiento formal de trabajo, sólo un registro de interés en participar en procesos de selección.
-
 
 
 

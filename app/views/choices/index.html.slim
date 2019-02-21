@@ -3,7 +3,7 @@ p.subtitle
   span<> Pregunta: 
   = link_to @question, @question
   span<> Cuestionario: 
-  = link_to @question.questionnaire, @question.questionnaire
+  = link_to @question.questionnaire, questionnaire_questions_path(@question.questionnaire)
 
 p= link_to 'Nueva opción', new_question_choice_path(@question), class:"button is-primary"
 

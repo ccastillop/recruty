@@ -1,72 +1,72 @@
-.content
-  = form_for @quiz do |f|
-    = f.hidden_field :questionnaire_id
-    = render 'layouts/error_explanation', f: f
+= form_for @quiz do |f|
+  = f.hidden_field :questionnaire_id
+  = render 'layouts/error_explanation', f: f
+  .tile.is-ancestor
+    - @quiz.questionnaire.questions.in_groups_of(3) do |group|
+      .tile.is-parent.is-vertical
+        - group.each do |question|
+          - answers = @quiz.answers.to_a.select{|a| a.question_id == question.id } 
+          .tile.box.is-child
+            p.title.is-5= question
+            p.subtitle.is-7= question.body
+            - if question.kind == "checkbox"
+              - question.choices.each do |choice|
+                - answer = answers.select{|a| a.choice_id == choice.id }.first
+                - answer ||= @quiz.answers.new(choice_id: choice.id, question_id: question.id)
+                p
+                  = f.fields_for :answers, answer do |ff|
+                    = ff.hidden_field :choice_id
+                    = ff.hidden_field :question_id
+                    = label_tag nil, class:"radio" do
+                      = ff.check_box :booly
+                      span<>= choice
+          
+            - elsif question.kind == "multitext"
+              - question.choices.each do |choice|
+                - answer = answers.select{|a| a.choice_id == choice.id }.first
+                - answer ||= @quiz.answers.build(choice_id: choice.id, question_id: question.id)
+                = f.fields_for :answers, answer do |ff|
+                  = ff.hidden_field :question_id
+                  = ff.hidden_field :choice_id
+                  p
+                    = form_group_for ff, :name, label: false do
+                      span<>= choice
+                      = ff.text_field :body, class: "input"
 
-    - @quiz.questionnaire.questions.each do |question|
-      - answers = @quiz.answers.to_a.select{|a| a.question_id == question.id } 
+            - elsif question.kind == "text"
+              - answer = answers.first
+              - answer ||= @quiz.answers.build(question_id: question.id)
+              = f.fields_for :answers, answer do |ff|
+                = ff.hidden_field :question_id
+                = form_group_for ff, :body, label: false do
+                  = ff.text_area :body, class: "textarea"
 
-      p 
-        strong= question
-        br
-        = question.body
+            - elsif question.kind == "radiobutton"
+              - answer = answers.first
+              - answer ||= @quiz.answers.build(question_id: question.id)
+              = f.fields_for :answers, answer do |ff|
+                = ff.hidden_field :question_id
+                = form_group_for ff, :name, label: false do
+                  - question.choices.each do |choice|
+                    p
+                      = label_tag nil, class:"radio" do
+                        span<>= ff.radio_button :choice_id, choice.id
+                        = choice
 
-      - if question.kind == "checkbox"
-        - question.choices.each do |choice|
-          - answer = answers.select{|a| a.choice_id == choice.id }.first
-          - answer ||= @quiz.answers.new(choice_id: choice.id, question_id: question.id)
-          = f.fields_for :answers, answer do |ff|
-            = ff.hidden_field :choice_id
-            = ff.hidden_field :question_id
-            = label_tag nil, class:"radio" do
-              = ff.check_box :booly
-              span<>= choice
-            br
-        hr         
-      - elsif question.kind == "multitext"
-        - question.choices.each do |choice|
-          - answer = answers.select{|a| a.choice_id == choice.id }.first
-          - answer ||= @quiz.answers.build(choice_id: choice.id, question_id: question.id)
-          = f.fields_for :answers, answer do |ff|
-            = ff.hidden_field :question_id
-            = ff.hidden_field :choice_id
-            = form_group_for ff, :name, label: false do
-              span<>= choice
-              = ff.text_field :body, class: "input"
-        hr
-      - elsif question.kind == "text"
-        - answer = answers.first
-        - answer ||= @quiz.answers.build(question_id: question.id)
-        = f.fields_for :answers, answer do |ff|
-          = ff.hidden_field :question_id
-          = form_group_for ff, :body, label: false do
-            = ff.text_area :body, class: "textarea"
-        hr
-      - elsif question.kind == "radiobutton"
-        - answer = answers.first
-        - answer ||= @quiz.answers.build(question_id: question.id)
-        = f.fields_for :answers, answer do |ff|
-          = ff.hidden_field :question_id
-          = form_group_for ff, :name, label: false do
-            - question.choices.each do |choice|
-              = label_tag nil, class:"radio" do
-                span<>= ff.radio_button :choice_id, choice.id
-                = choice
-              br
-        hr
-      - elsif question.kind == "boolean"
-        - answer = answers.first
-        - answer ||= @quiz.answers.build(question_id: question.id)
-        = f.fields_for :answers, answer do |ff|
-          = ff.hidden_field :question_id
-          = form_group_for f, :booly, label: false do
-            = label_tag nil, class:"radio" do
-              = ff.radio_button :booly, true
-              span<> Verdadero
-            br
-            = label_tag nil, class:"radio" do
-              = ff.radio_button :booly, false
-              span<> Falso
-            
-        hr
-    .actions = f.submit class: "button is-primary"
+            - elsif question.kind == "boolean"
+              - answer = answers.first
+              - answer ||= @quiz.answers.build(question_id: question.id)
+              = f.fields_for :answers, answer do |ff|
+                = ff.hidden_field :question_id
+                = form_group_for f, :booly, label: false do
+                  p
+                    = label_tag nil, class:"radio" do
+                      = ff.radio_button :booly, true
+                      span<> Verdadero
+
+                  p
+                    = label_tag nil, class:"radio" do
+                      = ff.radio_button :booly, false
+                      span<> Falso
+
+  .actions = f.submit class: "button is-primary"
