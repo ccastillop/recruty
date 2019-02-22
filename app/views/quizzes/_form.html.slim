@@ -6,7 +6,7 @@
       .tile.is-parent.is-vertical
         - group.each do |question|
           - answers = @quiz.answers.to_a.select{|a| a.question_id == question.id } 
-          .tile.box.is-child
+          .tile.box.is-child class="#{'notification is-danger' if @quiz.mark_error?(question)}"
             p.title.is-5= question
             p.subtitle.is-7= question.body
             - if question.kind == "checkbox"
