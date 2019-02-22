@@ -2,7 +2,7 @@
   = f.hidden_field :questionnaire_id
   = render 'layouts/error_explanation', f: f
   .tile.is-ancestor
-    - @quiz.questionnaire.questions.in_groups_of(3) do |group|
+    - @quiz.questionnaire.questions.in_groups_of(3, false) do |group|
       .tile.is-parent.is-vertical
         - group.each do |question|
           - answers = @quiz.answers.to_a.select{|a| a.question_id == question.id } 

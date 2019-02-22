@@ -2,22 +2,22 @@ h1.title Recruty
 
 .content
   p 
-    | Gracias por participar en el registro de muestra de interés.
+    | Gracias por mostrar interés en participar en el equipo Gob.pe.
     br
-    | Por favor responde estos cuestionarios para guardar un registro de tu participación.
+    | Por favor, responde estos cuestionarios.
 
   - if logged_in?
       p 
-        | Bienvenido 
-        strong #{current_user}
+        | ¡Bienvenido(a), 
+        strong= "#{current_user}!"
       
-      p = link_to "Contestar y/o modificar cuestionarios", quizzes_path, class:"button is-link"
+      p = link_to "Contesta y/o modifica cuestionarios", quizzes_path, class:"button is-link"
 
   - else
     p 
-      span> Por favor inicie sesión con Google para continuar.
+      span> Deberás iniciar sesión en Google para continuar.
       br
-      = link_to "Ingresar con Google", login_path, class:"button is-primary"
+      = link_to "Ingresa con Google", login_path, class:"button is-primary"
 
 
 

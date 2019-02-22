@@ -1,16 +1,16 @@
 h1.title Cuestionarios
 
 .content
-  p Para registrar su interés, por favor conteste los siguientes cuestionarios.
+  p Para registrar su interés, contesta los siguientes cuestionarios:
 
-  h4 Por contestar (#{current_user.available_questionnaires.count})
+  h5 Por contestar (#{current_user.available_questionnaires.count})
   ul
     - current_user.available_questionnaires.each do |questionnaire|
       li= link_to questionnaire, new_quiz_path(questionnaire_id: questionnaire.to_param), class: "button is-link"
 
-  h4 Cuestionarios respondidos (#{@quizzes.count})
+  h5 Cuestionarios respondidos (#{@quizzes.count})
 
-  p Puede modificar o eliminar sus cuestionarios en cualquier momento.
+  p Puedes modificar o eliminar los cuestionarios en cualquier momento.
 
 - if @quizzes.count > 0
   table.table.is-striped.is-narrow.is-hoverable
