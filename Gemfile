@@ -56,6 +56,14 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+
+  gem "capistrano", "~> 3.11", require: false
+  gem 'capistrano-rails', '~> 1.2'
+  gem 'capistrano3-puma', github: 'seuros/capistrano-puma'
+  gem 'capistrano-rbenv', '~> 2.0'
+  gem 'capistrano-rbenv-install'
+  gem 'capistrano-logrotate'
+  
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
