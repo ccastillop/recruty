@@ -99,4 +99,8 @@ server {
   if (-f $document_root/system/maintenance.html) {
     return 503;
   }
+
+  include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+  ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
 }

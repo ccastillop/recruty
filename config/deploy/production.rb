@@ -18,6 +18,17 @@ set :nginx_redirect_server_names, "www.recrity.cristiancastillo.com"
 server "#{fetch(:server_name)}", user: "#{fetch(:deploy_user)}", roles: %w{app db web} #, ssh_options: { port: 1222 }
 
 
+set :nginx_ssl_certificate, "/etc/letsencrypt/live/recruty.cristiancastillo.com/fullchain.pem"
+set :nginx_ssl_certificate_key, "/etc/letsencrypt/live/recruty.cristiancastillo.com/privkey.pem"
+set :nginx_use_ssl, true
+
+# listen 443 ssl; # managed by Certbot
+# ssl_certificate /etc/letsencrypt/live/recruty.cristiancastillo.com/fullchain.pem; # managed by Certbot
+# ssl_certificate_key /etc/letsencrypt/live/recruty.cristiancastillo.com/privkey.pem; # managed by Certbot
+# include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+# ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
