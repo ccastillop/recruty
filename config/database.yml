@@ -52,5 +52,8 @@ production:
   database: recluty_production
   username: recluty
   password: <%= ENV['RECLUTY_DATABASE_PASSWORD'] || Rails.application.credentials.dig(:mysql, :password, :production) %>
-  socket:   /cloudsql/<%= ENV['RECLUTY_DATABASE_CONNECTION_NAME'] || Rails.application.credentials.dig(:mysql, :connection_name, :production) %>
+  #socket:   /cloudsql/<%= ENV['RECLUTY_DATABASE_CONNECTION_NAME'] || Rails.application.credentials.dig(:mysql, :connection_name, :production) %>
   #host: <%= ENV['RECLUTY_DATABASE_URL'] || Rails.application.credentials.dig(:mysql, :url, :production) %>
+  socket: /var/run/mysqld/mysqld.sock
+  reconnect: true
+  

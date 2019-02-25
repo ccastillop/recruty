@@ -3,11 +3,14 @@ lock "~> 3.11.0"
 set :application, "recruty"
 set :repo_url, "git@github.com:ccastillop/recruty.git"
 
-set :rbenv_ruby, '2.5.2'
+set :rbenv_ruby, '2.5.1'
 set :rbenv_type, :user
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails puma pumactl}
 set :rbenv_roles, :all # default value
+
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
+set :linked_files, fetch(:linked_files, []).push('config/secrets.yml', 'config/master.key')
 
 #set :nginx_redirect_server_names, ""
 
