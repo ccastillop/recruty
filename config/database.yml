@@ -19,14 +19,14 @@ default: &default
 
 development:
   <<: *default
-  database: recluty_development
+  database: recruty_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: recluty_test
+  database: recruty_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -49,11 +49,11 @@ test:
 #
 production:
   <<: *default
-  database: recluty_production
-  username: recluty
-  password: <%= ENV['RECLUTY_DATABASE_PASSWORD'] || Rails.application.credentials.dig(:mysql, :password, :production) %>
-  #socket:   /cloudsql/<%= ENV['RECLUTY_DATABASE_CONNECTION_NAME'] || Rails.application.credentials.dig(:mysql, :connection_name, :production) %>
-  #host: <%= ENV['RECLUTY_DATABASE_URL'] || Rails.application.credentials.dig(:mysql, :url, :production) %>
+  database: recruty_production
+  username: recruty
+  password: <%= ENV['RECRUTY_DATABASE_PASSWORD'] || Rails.application.credentials.dig(:mysql, :password, :production) %>
+  #socket:   /cloudsql/<%= ENV['RECRUTY_DATABASE_CONNECTION_NAME'] || Rails.application.credentials.dig(:mysql, :connection_name, :production) %>
+  #host: <%= ENV['RECRUTY_DATABASE_URL'] || Rails.application.credentials.dig(:mysql, :url, :production) %>
   socket: /var/run/mysqld/mysqld.sock
   reconnect: true
   
