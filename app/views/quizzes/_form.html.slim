@@ -20,6 +20,8 @@
                     = label_tag nil, class:"radio" do
                       = ff.check_box :booly
                       span<>= choice
+                      - if choice.body == "Otro:"
+                        = ff.text_field :body, class: "input"
           
             - elsif question.kind == "multitext"
               - question.choices.each do |choice|
@@ -49,7 +51,9 @@
                     = label_tag nil, class:"radio" do
                       span<>= ff.radio_button :choice_id, choice.id
                       = choice
-
+                      - if choice.body == "Otro:"
+                        = ff.text_field :body, class: "input"
+                        
             - elsif question.kind == "boolean"
               - answer = answers.first
               - answer ||= @quiz.answers.build(question_id: question.id)
