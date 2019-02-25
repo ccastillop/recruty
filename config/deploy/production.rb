@@ -12,6 +12,7 @@ set :deploy_to, "/home/#{fetch(:deploy_user)}/apps/#{fetch(:full_app_name)}"
 # at filepaths
 
 set :server_name, "recruty.cristiancastillo.com"
+set :nginx_server_name, "#{fetch(:server_name)}"
 set :nginx_redirect_server_names, "www.recrity.cristiancastillo.com"
 
 server "#{fetch(:server_name)}", user: "#{fetch(:deploy_user)}", roles: %w{app db web} #, ssh_options: { port: 1222 }

@@ -21,6 +21,8 @@ Things you may want to cover:
 
 * Configuration
 
+    https://certbot.eff.org/lets-encrypt/ubuntubionic-nginx
+
 * Database creation
 
 * Database initialization
