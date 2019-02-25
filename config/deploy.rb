@@ -10,7 +10,7 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails puma pumactl}
 set :rbenv_roles, :all # default value
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
-set :linked_files, fetch(:linked_files, []).push('config/secrets.yml', 'config/master.key')
+set :linked_files, fetch(:linked_files, []).push('config/master.key')
 
 #set :nginx_redirect_server_names, ""
 
