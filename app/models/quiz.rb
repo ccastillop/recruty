@@ -29,9 +29,10 @@ class Quiz < ApplicationRecord
 
   def final_score
     ans = answers.map do |answer|
-      if answer.question.present? && answer.question.kind == "radiobutton" ||
+      if answer.question.present? && 
+         ( answer.question.kind == "radiobutton" ||
           (%w(checkbox boolean).include?(answer.question.kind) && answer.booly == true) ||
-          (answer.question.kind == "multitext" && answer.body.present? && answer.body.size > 1)
+          (answer.question.kind == "multitext" && answer.body.present? && answer.body.size > 1)) 
         answer.choice.score || 0
       else
         0
