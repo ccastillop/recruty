@@ -27,6 +27,19 @@ class Quiz < ApplicationRecord
       ("boolean"==question.kind && answers.to_a.select{ |a| a.question_id == question.id && a.booly==nil }.count > 0)  )
   end
 
+  def final_score
+    ans = answers.map do |answer|
+      if answer.question.kind == "radiobutton" ||
+          (%w(checkbox boolean).include?(answer.question.kind) && answer.booly == true) ||
+          (answer.question.kind == "multitext" && answer.body.present? && answer.body.size > 1)
+        answer.choice.score || 0
+      else
+        0
+      end
+    end
+    ans.reduce(:+) 
+  end
+
   private
   def persist_state
     self.state = machine.state

@@ -18,6 +18,8 @@ h1.title Cuestionarios
       tr
         th User
         th Cuest.
+        - if current_user.admin?
+          th Puntaje
         th
 
     tbody
@@ -28,6 +30,8 @@ h1.title Cuestionarios
             br
             = quiz.user.email
           td = quiz.questionnaire
+          - if current_user.admin?
+            td = quiz.final_score
           td 
             .buttons.are-small
               = link_to 'Ver / Modificar', edit_quiz_path(quiz), class:"button is-link"
