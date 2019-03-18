@@ -5,6 +5,9 @@ class QuizzesController < ApplicationController
   # GET /quizzes.json
   def index
     @quizzes = policy_scope(Quiz.all)
+                .joins(:user)
+                .includes(:user)
+                .order("users.email")
   end
 
   # GET /quizzes/1

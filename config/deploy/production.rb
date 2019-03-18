@@ -11,9 +11,9 @@ set :deploy_to, "/home/#{fetch(:deploy_user)}/apps/#{fetch(:full_app_name)}"
 # app side by side. Also provides quick sanity checks when looking
 # at filepaths
 
-set :server_name, "recruty.cristiancastillo.com"
+set :server_name, "recruty.com"
 set :nginx_server_name, "#{fetch(:server_name)}"
-set :nginx_redirect_server_names, "www.recrity.cristiancastillo.com"
+set :nginx_redirect_server_names, "www.recrity.cristiancastillo.com recruty.cristiancastillo.com"
 
 server "#{fetch(:server_name)}", user: "#{fetch(:deploy_user)}", roles: %w{app db web} #, ssh_options: { port: 1222 }
 
