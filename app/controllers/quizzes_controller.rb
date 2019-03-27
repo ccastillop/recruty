@@ -8,6 +8,8 @@ class QuizzesController < ApplicationController
                 .joins(:user)
                 .includes(:user)
                 .order("users.email")
+
+    @quizzes = @quizzes.map.sort{|a, b| b.final_score <=> a.final_score }
   end
 
   # GET /quizzes/1
