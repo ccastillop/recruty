@@ -55,7 +55,7 @@
                     = label_tag nil, class:"radio" do
                       span<>= ff.radio_button :choice_id, choice.id
                       = choice
-                      - if choice.body == "Otro:"
+                      - if choice.body =~ /(Otro:|especifique|especifica|especificar)/
                         = ff.text_field :body, class: "input"
                         
             - elsif question.kind == "boolean"
