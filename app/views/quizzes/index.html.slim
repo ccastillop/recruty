@@ -17,6 +17,7 @@ h1.title Cuestionarios
     thead
       tr
         th User
+        th CV
         th Cuest.
         - if current_user.admin?
           th Puntaje
@@ -27,9 +28,14 @@ h1.title Cuestionarios
       - @quizzes.each do |quiz|
         tr
           td 
-            = quiz.user
+            = link_to quiz.user, edit_user_path(quiz.user)
             br
             = quiz.user.email
+          td
+            - if quiz.user.curriculum_vitae.attached?
+              = link_to "CV", url_for(quiz.user.curriculum_vitae), target: :_blank
+            - else
+              = link_to "Falta", edit_user_path(quiz.user)
           td = quiz.questionnaire
           - if current_user.admin?
             td = quiz.final_score

@@ -11,7 +11,7 @@
     = f.file_field :curriculum_vitae
 
   - if current_user.admin?
-    = form_group_for f, :level do
+    = form_group_for f, :level, label: :level do
       = f.text_field :level, class: "input"
 
   .field = f.submit class:"button is-link"

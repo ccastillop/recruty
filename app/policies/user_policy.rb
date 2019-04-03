@@ -1,16 +1,16 @@
 class UserPolicy < ApplicationPolicy
 
-  def can_modify?
-    user.admin? || user == record
-  end
-
   def permitted_attributes
     pp = [:first_name, :last_name, :curriculum_vitae]
     if user.admin? 
       pp
     else
-      pp + :level
+      pp + [:level]
     end
+  end
+
+  def normal_can_modify?
+    user == record
   end
 
   class Scope < Scope
