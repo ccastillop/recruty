@@ -15,7 +15,13 @@ p
 p
   strong Last name:
   = @user.last_name
-p
-  strong Level:
-  = @user.level
 
+p
+  strong Curriculum Vitae:
+  - if @user.curriculum_vitae.attached?
+    = link_to "CV", url_for(@user.curriculum_vitae), target: :_blank
+  - else
+    | No ha subido su CV
+
+p
+  = link_to "Subir CV o modificar", edit_user_path(@user), class:"button is-link"

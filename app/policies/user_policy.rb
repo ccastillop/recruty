@@ -4,6 +4,15 @@ class UserPolicy < ApplicationPolicy
     user.admin? || user == record
   end
 
+  def permitted_attributes
+    pp = [:first_name, :last_name, :curriculum_vitae]
+    if user.admin? 
+      pp
+    else
+      pp + :level
+    end
+  end
+
   class Scope < Scope
     def resolve
       if user.admin?

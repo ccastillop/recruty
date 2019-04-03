@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :quizzes
+  has_one_attached :curriculum_vitae
 
   def admin?
     level == 'admin'
@@ -10,7 +11,7 @@ class User < ApplicationRecord
   end
 
   def to_s
-    name
+    "#{first_name} #{last_name}"
   end
 
   def available_questionnaires

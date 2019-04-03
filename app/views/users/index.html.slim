@@ -6,15 +6,24 @@ table.table.is-striped.is-narrow.is-hoverable
       th Email
       th Name
       th Image url
+      th CV
       th
 
   tbody
     - @users.each do |user|
       tr
         td = user.email
-        td = user.name
+        td = user.to_s
         td
           figure.image.is-128x128
             img.is-rounded src=user.image_url
-        td = link_to 'Show', user
+        td
+          - if user.curriculum_vitae.attached?
+            = link_to "CV", url_for(user.curriculum_vitae), target: :_blank
+          - else
+            | Sin CV
+        td 
+          .buttons.are-small  
+            = link_to "Modificar, Agregar CV", edit_user_path(user), class:"button is-link"
+            = link_to 'Ver', user, class:"button is-link"
 
