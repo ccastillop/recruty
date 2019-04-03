@@ -34,9 +34,9 @@ h1.title Cuestionarios
           - if current_user.admin?
             td = quiz.final_score
             td  
-              = l quiz.created_at
+              = l quiz.created_at, format: :short
               br
-              = l quiz.updated_at
+              = l quiz.answers.order(updated_at: :desc).first.updated_at, format: :short
           td 
             .buttons.are-small
               = link_to 'Ver / Modificar', edit_quiz_path(quiz), class:"button is-link"
