@@ -3,7 +3,12 @@ p.subtitle
   span<> Cuestionario: 
   strong<> = @quiz.questionnaire
   span<> Usuario:
-  strong<> = @quiz.user
+  strong<> = link_to @quiz.user, edit_user_path(@quiz.user)
+  span<>
+    - if @quiz.user.curriculum_vitae.attached?
+      = link_to "CV", url_for(@quiz.user.curriculum_vitae), target: :_blank
+    - else
+      | No CV
 
 == render 'form'
 
