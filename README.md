@@ -1,17 +1,14 @@
 # README
 
-Deployed on Google Cloud
+Deployed on Digital Ocean. Sorry, I think Google Cloud sucks
 
-Accessing Google Engine Rails console: 
+Therefore I started using a plain simple Digital Ocean droplet, an [Mine](https://github.com/mina-deploy/mina/blob/master/docs/getting_started.md) simple deploy procedure, as explained in [this tutorial](https://www.ralfebert.de/tutorials/rails-deployment/)
 
-https://gist.github.com/kyptin/e5da270a54abafac2fbfcd9b52cafb61
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
+https://www.ralfebert.de/tutorials/rails-deployment/
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby version: See gemfile
 
 * System dependencies
 
@@ -33,9 +30,5 @@ Things you may want to cover:
 
 * Deployment instructions
 
-At first, I deployed using Google Cloud services but they told me that I am a cryptocurrency miner, so the drop my account.
 
-Therefore I started using a plain simple Digital Ocean droplet, an [Mine](https://github.com/mina-deploy/mina/blob/master/docs/getting_started.md) simple deploy procedure, as explained in [this tutorial](https://www.ralfebert.de/tutorials/rails-deployment/)
-
-https://www.ralfebert.de/tutorials/rails-deployment/
 
