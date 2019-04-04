@@ -4,10 +4,15 @@ p
 p
   strong Body:
   = @choice.body
-p
-  strong Score:
-  = @choice.score
+  
+- if current_user.admin?
+  p
+    strong Score:
+    = @choice.score
+  p
+    strong Comments:
+    = @choice.comments
 
-=> link_to 'Edit', edit_choice_path(@choice)
+=> link_to 'Ver/modificar respuestas', edit_choice_path(@choice)
 '|
-=< link_to 'Back', question_choices_path(@choice.question)
+=< link_to 'Regresar', question_choices_path(@choice.question)

@@ -9,6 +9,12 @@ class Quiz < ApplicationRecord
   validate :radios
   validate :booleans
 
+  STATES = %w(revision terna01 terna02 terna03 terna04)
+
+  def to_s
+    questionnaire.to_s
+  end
+
   def machine
     @machine ||= begin
       fsm = MicroMachine.new(state || "pending")
@@ -44,10 +50,6 @@ class Quiz < ApplicationRecord
   private
   def persist_state
     self.state = machine.state
-  end
-
-  def to_s
-    questionnaire.to_s
   end
 
   def radios

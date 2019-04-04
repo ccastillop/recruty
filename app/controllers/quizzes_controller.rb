@@ -32,7 +32,8 @@ class QuizzesController < ApplicationController
   # POST /quizzes
   # POST /quizzes.json
   def create
-    @quiz = Quiz.new(quiz_params)
+    @quiz = Quiz.new()
+    @quiz.attributes = permitted_attributes(@quiz)
     @quiz.user = current_user
     authorize @quiz
     respond_to do |format|
@@ -51,7 +52,7 @@ class QuizzesController < ApplicationController
   # PATCH/PUT /quizzes/1.json
   def update
     respond_to do |format|
-      if @quiz.update(quiz_params)
+      if @quiz.update(permitted_attributes(@quiz))
         format.html { redirect_to edit_quiz_path(@quiz), notice: '¡Gracias! guardé sus cambios' }
         format.json { render :show, status: :ok, location: edit_quiz_path(@quiz) }
       else
@@ -79,18 +80,18 @@ class QuizzesController < ApplicationController
       authorize @quiz
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def quiz_params
-      params.require(:quiz).permit(
-        :questionnaire_id,
-        answers_attributes:[
-          :id,
-          :question_id,
-          :choice_id,
-          :body,
-          :booly
-        ]
-      )
-    end
+    # # Never trust parameters from the scary internet, only allow the white list through.
+    # def permited_attributes
+    #   params.require(:quiz).permit(
+    #     :questionnaire_id,
+    #     answers_attributes:[
+    #       :id,
+    #       :question_id,
+    #       :choice_id,
+    #       :body,
+    #       :booly
+    #     ]
+    #   )
+    # end
 
 end

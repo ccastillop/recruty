@@ -3,6 +3,10 @@
   p.help= @quiz.questionnaire.instructions
 
 = form_for @quiz do |f|
+  - if current_user.admin?
+    = form_group_for f, :comments, label: :comments do
+      = f.text_area :comments, class: :textarea
+    
   = f.hidden_field :questionnaire_id
   = render 'layouts/error_explanation', f: f
   .tile.is-ancestor

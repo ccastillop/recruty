@@ -1,4 +1,21 @@
 class QuizPolicy < ApplicationPolicy
+  
+  def permitted_attributes
+    att = [:questionnaire_id,
+        answers_attributes:[
+          :id,
+          :question_id,
+          :choice_id,
+          :body,
+          :booly
+        ]
+      ]
+    if user.admin?
+      att + [:state, :comments]
+    else
+      att
+    end    
+  end
 
   class Scope < Scope
     def resolve

@@ -22,6 +22,7 @@ h1.title Cuestionarios
         - if current_user.admin?
           th Puntaje
           th Fechas
+          th Comments.
         th
 
     tbody
@@ -43,6 +44,8 @@ h1.title Cuestionarios
               = l quiz.created_at, format: :short
               br
               = l quiz.answers.order(updated_at: :desc).first.updated_at, format: :short
+            td
+              = simple_format quiz.comments
           td 
             .buttons.are-small
               = link_to 'Ver / Modificar', edit_quiz_path(quiz), class:"button is-link"
