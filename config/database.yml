@@ -14,11 +14,15 @@ default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password:
+  password: root
   socket: /tmp/mysql.sock
 
 development:
   <<: *default
+  adapter: mysql2
+  user: root
+  password: root
+  host: localhost
   database: recruty_development
 
 # Warning: The database defined as "test" will be erased and
@@ -56,4 +60,3 @@ production:
   #host: <%= ENV['RECRUTY_DATABASE_URL'] || Rails.application.credentials.dig(:mysql, :url, :production) %>
   socket: /var/run/mysqld/mysqld.sock
   reconnect: true
-  
