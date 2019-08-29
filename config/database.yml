@@ -19,10 +19,6 @@ default: &default
 
 development:
   <<: *default
-  adapter: mysql2
-  user: root
-  password: root
-  host: localhost
   database: recruty_development
 
 # Warning: The database defined as "test" will be erased and
