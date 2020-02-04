@@ -1,7 +1,8 @@
 class ApplicationController < ActionController::Base
   helper_method :logged_in?, :current_user
   include Pundit
-
+  include Pagy::Backend
+  
   def logged_in?
     session.has_key?(:user_id) && User.exists?(session[:user_id])
   end

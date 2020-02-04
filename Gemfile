@@ -76,3 +76,5 @@ gem "bulma-rails", "~> 0.7.4"
 gem "pundit"
 gem "micromachine"
 #gem "appengine", "~> 0.4.6"
+
+gem 'pagy'

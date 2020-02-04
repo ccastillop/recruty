@@ -50,3 +50,6 @@ h1.title Cuestionarios
             .buttons.are-small
               = link_to 'Ver / Modificar', edit_quiz_path(quiz), class:"button is-link"
               = link_to 'Eliminar', quiz, data: { confirm: 'Are you sure?' }, method: :delete, class:"button is-danger"
+
+
+  == pagy_bulma_nav(@pagy)

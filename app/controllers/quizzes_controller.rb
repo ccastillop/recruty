@@ -4,12 +4,14 @@ class QuizzesController < ApplicationController
   # GET /quizzes
   # GET /quizzes.json
   def index
-    @quizzes = policy_scope(Quiz.all)
+    quizzes = policy_scope(Quiz.all)
                 .joins(:user)
                 .includes(:user)
-                .order("users.email")
+                .order(created_at: :desc)
 
-    @quizzes = @quizzes.map.sort{|a, b| b.final_score <=> a.final_score }
+    @pagy, @quizzes = pagy(quizzes)
+
+    #@quizzes = @quizzes.map.sort{|a, b| b.final_score <=> a.final_score }
   end
 
   # GET /quizzes/1
