@@ -13,11 +13,27 @@ h1.title Cuestionarios
   p Puedes modificar o eliminar los cuestionarios en cualquier momento.
 
 - if @quizzes.count > 0
+  - if current_user.admin?
+    = form_for @quiz_filter, url:quizzes_path,
+      class: "", method: :get  do |f|
+
+      = f.text_field :terms,
+        placeholder: "Buscar",
+        class:"rounded border border-gray-400 placeholder-gray-700 py-2 pl-2 pr-1 w-full"
+
+      .form-filter
+
+        p.mt-4 Fechas
+        = f.date_field :start_date
+        
+        = f.date_field :end_date
+        
+      = f.submit
+
   table.table.is-striped.is-narrow.is-hoverable
     thead
       tr
         th User
-        th CV
         th Cuest.
         - if current_user.admin?
           th Puntaje
@@ -32,11 +48,12 @@ h1.title Cuestionarios
             = link_to quiz.user, edit_user_path(quiz.user)
             br
             = quiz.user.email
-          td
+            br
             - if quiz.user.curriculum_vitae.attached?
               = link_to "CV", url_for(quiz.user.curriculum_vitae), target: :_blank
             - else
-              = link_to "Falta", edit_user_path(quiz.user)
+              = link_to "Falta CV", edit_user_path(quiz.user)
+
           td = quiz.questionnaire
           - if current_user.admin?
             td = quiz.final_score

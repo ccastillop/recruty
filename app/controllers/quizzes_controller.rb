@@ -9,9 +9,11 @@ class QuizzesController < ApplicationController
                 .includes(:user)
                 .order(created_at: :desc)
 
+    @quiz_filter = QuizFilter.new quiz_filter_params
+    quizzes = @quiz_filter.filter(quizzes)
+
     @pagy, @quizzes = pagy(quizzes)
 
-    #@quizzes = @quizzes.map.sort{|a, b| b.final_score <=> a.final_score }
   end
 
   # GET /quizzes/1
@@ -82,18 +84,13 @@ class QuizzesController < ApplicationController
       authorize @quiz
     end
 
-    # # Never trust parameters from the scary internet, only allow the white list through.
-    # def permited_attributes
-    #   params.require(:quiz).permit(
-    #     :questionnaire_id,
-    #     answers_attributes:[
-    #       :id,
-    #       :question_id,
-    #       :choice_id,
-    #       :body,
-    #       :booly
-    #     ]
-    #   )
-    # end
+    def quiz_filter_params
+      if params[:quiz_filter]
+        params.require(:quiz_filter).permit(:terms,
+          :start_date, :end_date)
+      else
+        {}
+      end
+    end
 
 end
