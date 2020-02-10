@@ -63,6 +63,13 @@ h1.title Cuestionarios
               = l quiz.answers.order(updated_at: :desc).first.updated_at, format: :short
             td
               = simple_format quiz.comments
+            td
+              - if quiz.questionnaire_id == 1
+                - quiz.answers.where(question_id: [17, 18] ).each do |answer|
+                  p
+                    strong= "#{answer.question}: "
+                    span= answer.choice
+                    span= answer.body
           td 
             .buttons.are-small
               = link_to 'Ver / Modificar', edit_quiz_path(quiz), class:"button is-link"
